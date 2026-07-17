@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { USERS_API, fetchListUrl } from '../lib/api'
+// Codespaces endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/
 
 export default function Users() {
   const [items, setItems] = useState([])
