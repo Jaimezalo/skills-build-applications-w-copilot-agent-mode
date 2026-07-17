@@ -9,7 +9,9 @@ export const API_BASE = base
 
 // fetchList handles array responses, paginated { items: [...] }, or keyed objects
 export async function fetchList(path) {
-  const url = `${API_BASE}/${path}`.replace(/\/+/g, '/')
+  const cleanedBase = API_BASE.replace(/\/+$/, '')
+  const cleanedPath = path.replace(/^\/+/, '')
+  const url = `${cleanedBase}/${cleanedPath}`
   const res = await axios.get(url)
   const data = res.data
   if (Array.isArray(data)) return data
