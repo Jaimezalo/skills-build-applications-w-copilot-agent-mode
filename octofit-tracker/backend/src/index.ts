@@ -9,7 +9,7 @@ import workoutsRouter from './routes/workouts'
 
 const app = express()
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8000
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/octofit'
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/octofit_db'
 
 app.use(express.json())
 
