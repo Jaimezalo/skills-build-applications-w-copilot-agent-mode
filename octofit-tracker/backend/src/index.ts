@@ -15,8 +15,9 @@ app.use(express.json())
 
 // Codespaces-aware API URL
 const CODESPACE = process.env.CODESPACE_NAME
+// When running in Codespaces, use the app.github.dev host with the backend port
 const BASE_API_URL = CODESPACE
-  ? `https://${CODESPACE}-${PORT}.githubpreview.dev`
+  ? `https://${CODESPACE}-${PORT}.app.github.dev`
   : `http://localhost:${PORT}`
 
 // Configure CORS to allow frontend in Codespaces or local dev
@@ -25,7 +26,9 @@ const allowedOrigins = [
   `http://127.0.0.1:5173`,
 ]
 if (CODESPACE) {
-  allowedOrigins.push(`https://${CODESPACE}-5173.githubpreview.dev`)
+  // Allow the preview URL for the frontend and the backend
+  allowedOrigins.push(`https://${CODESPACE}-5173.app.github.dev`)
+  allowedOrigins.push(`https://${CODESPACE}-${PORT}.app.github.dev`)
 }
 
 app.use(
