@@ -1,15 +1,19 @@
 import { Router } from 'express'
+import { User } from '../models/user'
 
 const router = Router()
 
 // GET /api/users/ - list users
-router.get('/', (_req, res) => {
-  res.json({ users: [] })
+router.get('/', async (_req, res) => {
+  const users = await User.find().lean()
+  res.json({ users })
 })
 
 // POST /api/users/ - create user
-router.post('/', (req, res) => {
-  const user = req.body
+router.post('/', async (req, res) => {
+  const payload = req.body
+  const user = new User(payload)
+  await user.save()
   res.status(201).json({ user })
 })
 
