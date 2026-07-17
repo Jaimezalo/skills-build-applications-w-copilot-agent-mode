@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { fetchList } from '../lib/api'
+import { WORKOUTS_API, fetchListUrl } from '../lib/api'
 
 export default function Workouts() {
   const [items, setItems] = useState([])
-  useEffect(() => { fetchList('workouts').then(setItems).catch(()=>setItems([])) }, [])
+  useEffect(() => { fetchListUrl(WORKOUTS_API).then(setItems).catch(()=>setItems([])) }, [])
   return (
     <section>
       <h2>Workouts</h2>

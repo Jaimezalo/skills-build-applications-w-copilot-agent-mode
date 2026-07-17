@@ -6,12 +6,14 @@ const base = codespace
   : `http://localhost:8000/api`
 
 export const API_BASE = base
+export const USERS_API = `${API_BASE}/users/`
+export const TEAMS_API = `${API_BASE}/teams/`
+export const ACTIVITIES_API = `${API_BASE}/activities/`
+export const WORKOUTS_API = `${API_BASE}/workouts/`
+export const LEADERBOARD_API = `${API_BASE}/leaderboard/`
 
 // fetchList handles array responses, paginated { items: [...] }, or keyed objects
-export async function fetchList(path) {
-  const cleanedBase = API_BASE.replace(/\/+$/, '')
-  const cleanedPath = path.replace(/^\/+/, '')
-  const url = `${cleanedBase}/${cleanedPath}`
+export async function fetchListUrl(url) {
   const res = await axios.get(url)
   const data = res.data
   if (Array.isArray(data)) return data
@@ -24,4 +26,4 @@ export async function fetchList(path) {
   return []
 }
 
-export default { API_BASE, fetchList }
+export default { API_BASE, USERS_API, TEAMS_API, ACTIVITIES_API, WORKOUTS_API, LEADERBOARD_API, fetchListUrl }

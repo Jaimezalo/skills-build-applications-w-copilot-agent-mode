@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { fetchList } from '../lib/api'
+import { LEADERBOARD_API, fetchListUrl } from '../lib/api'
 
 export default function Leaderboard() {
   const [items, setItems] = useState([])
-  useEffect(() => { fetchList('leaderboard').then(setItems).catch(()=>setItems([])) }, [])
+  useEffect(() => { fetchListUrl(LEADERBOARD_API).then(setItems).catch(()=>setItems([])) }, [])
   return (
     <section>
       <h2>Leaderboard</h2>

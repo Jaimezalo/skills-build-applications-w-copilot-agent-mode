@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { fetchList } from '../lib/api'
+import { USERS_API, fetchListUrl } from '../lib/api'
 
 export default function Users() {
   const [items, setItems] = useState([])
-  useEffect(() => { fetchList('users').then(setItems).catch(()=>setItems([])) }, [])
+  useEffect(() => { fetchListUrl(USERS_API).then(setItems).catch(()=>setItems([])) }, [])
   return (
     <section>
       <h2>Users</h2>

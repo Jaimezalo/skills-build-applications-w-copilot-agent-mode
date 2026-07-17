@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { fetchList } from '../lib/api'
+import { TEAMS_API, fetchListUrl } from '../lib/api'
 
 export default function Teams() {
   const [items, setItems] = useState([])
-  useEffect(() => { fetchList('teams').then(setItems).catch(()=>setItems([])) }, [])
+  useEffect(() => { fetchListUrl(TEAMS_API).then(setItems).catch(()=>setItems([])) }, [])
   return (
     <section>
       <h2>Teams</h2>
