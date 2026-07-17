@@ -45,6 +45,28 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', apiUrl: BASE_API_URL })
 })
 
+// Root page: información básica sobre la API
+app.get('/', (_req, res) => {
+  const html = `
+    <html>
+      <head><title>OctoFit API</title></head>
+      <body style="font-family:system-ui,Segoe UI,Roboto,Arial;line-height:1.6;padding:24px">
+        <h1>OctoFit Tracker API</h1>
+        <p>Esta es la API del proyecto OctoFit. Usa los endpoints listados abajo.</p>
+        <ul>
+          <li><a href="/health">/health</a></li>
+          <li><a href="/api/users">/api/users</a></li>
+          <li><a href="/api/activities">/api/activities</a></li>
+          <li><a href="/api/workouts">/api/workouts</a></li>
+          <li><a href="/api/leaderboard">/api/leaderboard</a></li>
+        </ul>
+        <p>Base API URL: <code>${BASE_API_URL}</code></p>
+      </body>
+    </html>
+  `
+  res.status(200).type('html').send(html)
+})
+
 // Mount API routes
 app.use('/api/users', usersRouter)
 app.use('/api/teams', teamsRouter)
